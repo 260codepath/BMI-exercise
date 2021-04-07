@@ -89,7 +89,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
-https://www.figma.com/file/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=0%3A1
+https://www.figma.com/proto/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=6%3A1&scaling=scale-down&page-id=0%3A1
 ### [BONUS] Interactive Prototype
 
 ## Schema 
