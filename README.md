@@ -2,6 +2,7 @@ Original App Design Project - README Template
 ===
 
 # BMMO Exercise
+by Melissa, Dogukan, Daniel, Rabiul
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -83,7 +84,7 @@ An excersing app that utilizes elements of role playing where the more the user 
     * Exercises
 
 ## Wireframes
-<img src="https://i.imgur.com/m3C0dwL.jpg" width=300>
+<img src="https://i.imgur.com/m3C0dwL.jpg" width=100>![]
 
 ### [BONUS] Digital Wireframes & Mockups
 https://www.figma.com/proto/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=6%3A1&scaling=scale-down&page-id=0%3A1
