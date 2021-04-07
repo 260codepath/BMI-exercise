@@ -84,7 +84,9 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="https://imgur.com/a/1vL9u02" width=600>
+<img src=
+"https://imgur.com/a/1vL9u02"
+width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 https://www.figma.com/file/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=0%3A1
