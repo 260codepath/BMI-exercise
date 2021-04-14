@@ -146,7 +146,8 @@ Quiz
     - (Read/GET) Answer
     - (Update/PUT) Update the score
     - (Update/PUT) Experience for int
-
+ 
+```
 ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
         query.include(Profile.KEY_USER);
         query.whereEqualTo(Profile.KEY_USER, ParseUser.getCurrentUser());
@@ -165,3 +166,4 @@ ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
                 }
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
+```
