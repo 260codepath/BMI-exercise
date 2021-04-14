@@ -1,6 +1,7 @@
 Original App Design Project - README Template
 ===
 
+
 # BMMO Exercise
 by Melissa, Dogukan, Daniel, Rabiul
 
@@ -54,11 +55,10 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 * Login Screen
    * User can login.
-* Register
+* Register/Character creation screen
     * register
 * Profile Screen
    * User can view their stats.
-* Character creation screen
 * Exercise screen
     * boxes with exercises
     * once clicked, decide on time or total youre going for
@@ -84,17 +84,84 @@ An excersing app that utilizes elements of role playing where the more the user 
     * Exercises
 
 ## Wireframes
-<img src="https://i.imgur.com/m3C0dwL.jpg" width=550>
+[Hand sketched wireframes]
+<img src="https://i.imgur.com/m3C0dwL.jpg" width=600>
+
 
 ### [BONUS] Digital Wireframes & Mockups
-https://www.figma.com/proto/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=6%3A1&scaling=scale-down&page-id=0%3A1
+https://www.figma.com/file/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=0%3A1
 ### [BONUS] Interactive Prototype
 
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+
+Profile
+| Property | Type    | Description             |
+| -------- | ------- | ----------------------- |
+| userID   | string  | Unique id for character |
+| Stats    | array   | Array containing stats  |
+| workout  | pointer | data from workouts      |
+| BMI      | float   | BMI                     |
+| Name     | String  | name of profile         |
+
+Workout
+
+| Property   | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| Name       | String | Name of the Exercise |
+| experience | double | Exp to level up      |
+| time       | double | time to complete     |
+
+Quiz
+
+| Property   | Type   | Description      |
+| ---------- | ------ | ---------------- |
+| Name       | String | Name of the Quiz |
+| Question   | String | Question         |
+| experience | double | Exp to level up  |
+| Answer     | String | Answer           |
+
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+ - Profile Screen
+    - (Read/GET) Query logged in user object
+    - (Update/PUT) Update user profile 
+    - (Read/GET) Get stats
+    - (Update/PUT) Update stats
+
+- Login Screen
+    - (Read/GET) id
+    - (Read/GET) Query logged in user object
+
+- Register /Character creation screen
+    - (Read/GET) Query logged in user object
+    - (Update/PUT) Update user profile
+
+- Workout
+    - (Update/PUT) Experience / stats
+    - (Update/PUT) Update user profile
+
+- Quiz
+    - (Read/GET) Answer
+    - (Update/PUT) Update the score
+    - (Update/PUT) Experience for int
+
+ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
+        query.include(Profile.KEY_USER);
+        query.whereEqualTo(Profile.KEY_USER, ParseUser.getCurrentUser());
+        query.setLimit(20);
+        query.addDescendingOrder(Profile.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Profile>() {
+            @Override
+            public void done(List<Workout> workouts, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting exercise", e);
+                    return;
+                }
+                for (Workout workout : workout) {
+                    Log.i(TAG, "Workout: " + workout.getExercise() + ", User: "
+                            + post.getUser().getUsername());
+                }
+                allPosts.addAll(posts);
+                adapter.notifyDataSetChanged();
