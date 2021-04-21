@@ -1,8 +1,8 @@
-package com.example.instagramclone.fragments;
+package com.example.bmmo.fragments;
 
 import android.util.Log;
 
-import com.example.instagramclone.Post;
+import com.example.bmmo.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

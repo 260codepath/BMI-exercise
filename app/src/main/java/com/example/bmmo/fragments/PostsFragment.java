@@ -1,4 +1,4 @@
-package com.example.instagramclone.fragments;
+package com.example.bmmo.fragments;
 
 import android.os.Bundle;
 
@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.instagramclone.Post;
-import com.example.instagramclone.PostsAdapter;
-import com.example.instagramclone.R;
+import com.example.bmmo.Post;
+import com.example.bmmo.PostsAdapter;
+import com.example.bmmo.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

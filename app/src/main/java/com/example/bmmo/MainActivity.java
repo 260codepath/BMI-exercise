@@ -1,4 +1,4 @@
-package com.example.instagramclone;
+package com.example.bmmo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,9 +23,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.instagramclone.fragments.ComposeFragment;
-import com.example.instagramclone.fragments.PostsFragment;
-import com.example.instagramclone.fragments.ProfileFragment;
+import com.example.bmmo.fragments.ComposeFragment;
+import com.example.bmmo.fragments.PostsFragment;
+import com.example.bmmo.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;

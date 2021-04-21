@@ -1,4 +1,4 @@
-package com.example.instagramclone;
+package com.example.bmmo;
 
 import android.app.Application;
 
