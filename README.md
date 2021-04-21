@@ -38,8 +38,8 @@ An excersing app that utilizes elements of role playing where the more the user 
   * strength
   * BMI (height and weight)
   * mana
-  -[x] Intelligence (default quiz)
--[x] login - logout
+  - [X] Intelligence (default quiz)
+- [X] login - logout
 
 
 **Optional Nice-to-have Stories**
