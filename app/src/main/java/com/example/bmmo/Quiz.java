@@ -1,6 +1,25 @@
 package com.example.bmmo;
 
-public class Quiz {
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.parse.ParseUser;
+
+public class Quiz extends AppCompatActivity {
+
+
+    public Quiz(){}
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.quiz);
+    }
+
     public String Questions[] = {
             "question1",
             "question2",
