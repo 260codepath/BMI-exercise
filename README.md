@@ -87,6 +87,13 @@ An excersing app that utilizes elements of role playing where the more the user 
 [Hand sketched wireframes]
 <img src="https://i.imgur.com/m3C0dwL.jpg" width=600>
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='walkthrough2.1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ### [BONUS] Digital Wireframes & Mockups
 https://www.figma.com/file/2hpgyGy9dig2V9noWDtYfU/Untitled?node-id=0%3A1
