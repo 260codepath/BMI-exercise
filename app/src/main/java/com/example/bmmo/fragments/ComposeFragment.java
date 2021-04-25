@@ -21,18 +21,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.bmmo.MainActivity;
 import com.example.bmmo.Post;
 import com.example.bmmo.R;
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -69,7 +65,7 @@ public class ComposeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_compose, container, false);
+        return inflater.inflate(R.layout.fragment_exercise, container, false);
     }
 
     // This event is triggered soon after onCreateView().
@@ -78,15 +74,9 @@ public class ComposeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etDescription = view.findViewById(R.id.etDescription);
-        btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
+//        btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
-        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchCamera();
-            }
-        });
         //        queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +90,8 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(getContext(),"No image",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description,currentUser,photoFile);
+//                ParseUser currentUser = ParseUser.getCurrentUser();
+//                savePost(description,currentUser,photoFile);
             }
         });
     }

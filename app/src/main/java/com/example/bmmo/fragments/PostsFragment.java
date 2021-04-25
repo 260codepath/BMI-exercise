@@ -76,7 +76,7 @@ public class PostsFragment extends Fragment {
         adapter = new PostsAdapter(getContext(),allPosts);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+//        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -90,10 +90,10 @@ public class PostsFragment extends Fragment {
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
                 adapter.clear();
-                queryPosts();
+//                queryPosts();
             }
         });
-        queryPosts();
+//        queryPosts();
     }
 
     protected void queryPosts() {

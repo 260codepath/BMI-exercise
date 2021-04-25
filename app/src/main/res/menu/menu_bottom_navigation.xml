@@ -5,16 +5,16 @@
     <item
         android:id="@+id/action_home"
         android:icon="@drawable/instagram_home_filled_24"
-        android:title="Home"
+        android:title="@string/home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_compose"
-        android:icon="@drawable/instagram_new_post_filled_24"
-        android:title="Compose"
+        android:id="@+id/action_exercise"
+        android:icon="@android:drawable/sym_call_outgoing"
+        android:title="@string/exercise"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/instagram_user_filled_24"
-        android:title="Profile"
+        android:title="@string/profile"
         app:showAsAction="always" />
 </menu>

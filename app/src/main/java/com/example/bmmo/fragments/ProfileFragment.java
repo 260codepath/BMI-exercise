@@ -1,10 +1,15 @@
 package com.example.bmmo.fragments;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
 
 import com.example.bmmo.LoginActivity;
 import com.example.bmmo.Post;
@@ -17,7 +22,7 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-public class ProfileFragment extends PostsFragment{
+public class ProfileFragment extends Fragment{
     private final int REQUEST_CODE = 20;
     MenuItem men;
 
@@ -27,6 +32,14 @@ public class ProfileFragment extends PostsFragment{
 //        MenuItem quiz = menu.findItem(R.id.quiz_menu);
 //        quiz.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        return inflater.inflate(R.layout.fragments_profile, container, false);
     }
 
     @Override

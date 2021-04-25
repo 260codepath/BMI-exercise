@@ -12,23 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Description..."/>
-    <Button
-        android:id="@+id/btnCaptureImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Take Picture"/>
+        android:hint="Choose Exercise" />
 
     <ImageView
         android:id="@+id/ivPostImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"/>
+        android:text="Start Exercise" />
 
 </LinearLayout>
