@@ -30,8 +30,8 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 **Required Must-have Stories**
 
-* character/Profile
-* stats
+- [X]  character/Profile
+- [X] stats
   * level
   * stamina
   * health
@@ -53,13 +53,13 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 ### 2. Screen Archetypes
 
-* Login Screen
+- [X]  Login Screen
    * User can login.
-* Register/Character creation screen
+- [X]  Register/Character creation screen
     * register
-* Profile Screen
+- [X]  Profile Screen
    * User can view their stats.
-* Exercise screen
+- [X]  Exercise screen
     * boxes with exercises
     * once clicked, decide on time or total youre going for
 
