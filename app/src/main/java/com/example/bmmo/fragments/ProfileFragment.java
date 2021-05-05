@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
+import com.example.bmmo.Exercise;
 import com.example.bmmo.LoginActivity;
-import com.example.bmmo.Post;
-import com.example.bmmo.Quiz;
+import com.example.bmmo.PostsAdapter;
 import com.example.bmmo.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,13 +24,13 @@ import java.util.List;
 
 public class ProfileFragment extends Fragment{
     private final int REQUEST_CODE = 20;
-    MenuItem men;
+    public static final String TAG = "PostsFragment";
+    private List<Exercise> allExercises;
+    private PostsAdapter adapter;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.log_out,menu);
-//        MenuItem quiz = menu.findItem(R.id.quiz_menu);
-//        quiz.setVisible(false);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -46,6 +46,8 @@ public class ProfileFragment extends Fragment{
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.menu_logout) {
+            ParseUser.logOut();
+            ParseUser currentUser = ParseUser.getCurrentUser();
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivityForResult(intent,REQUEST_CODE);
             return true;
@@ -54,26 +56,25 @@ public class ProfileFragment extends Fragment{
     }
 
 
-//    @Override
-//    protected void queryPosts() {
-//        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-//        query.include(Post.KEY_USER);
-//        query.setLimit(20);
-//        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
-//        query.addDescendingOrder(Post.KEY_CREATED_AT);
-//        query.findInBackground(new FindCallback<Post>() {
-//            @Override
-//            public void done(List<Post> posts, ParseException e) {
-//                if (e != null){
-//                    Log.e(TAG, "Issue getting posts",e);
-//                    return;
-//                }
-//                for (Post post: posts){
-//                    Log.i(TAG,"Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-//                }
-//                allPosts.addAll(posts);
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//    }
+    protected void queryPosts() {
+        ParseQuery<Exercise> query = ParseQuery.getQuery(Exercise.class);
+        query.include(Exercise.KEY_USER);
+        query.setLimit(20);
+        query.whereEqualTo(Exercise.KEY_USER, ParseUser.getCurrentUser());
+        query.addDescendingOrder(Exercise.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Exercise>() {
+            @Override
+            public void done(List<Exercise> posts, ParseException e) {
+                if (e != null){
+                    Log.e(TAG, "Issue getting posts",e);
+                    return;
+                }
+                for (Exercise exercise: posts){
+                    Log.i(TAG,"Post: " + exercise.getUser() + ", username: " + exercise.getUser().getUsername());
+                }
+                allExercises.addAll(posts);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
 }

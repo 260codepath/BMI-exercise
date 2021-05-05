@@ -13,11 +13,11 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ParseObject.registerSubclass(Post.class);
+        ParseObject.registerSubclass(Exercise.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("osLAZyLCE8sYhkQj9rOLCEjIiiq2w2sCxr2tUtHj")
-                .clientKey("229SUGPKKsxhNMpi1QeDoFJpU3NafRwFKxQDPGdA")
+                .applicationId("zhEbL731kdgduHF6c4E8Y2b1RimX8wdck47BTOJI")
+                .clientKey("7ZFscsxl7ftkXxW19pJpgUFs5xjJbTIuPQKJfZDa")
                 .server("https://parseapi.back4app.com")
                 .build()
         );

@@ -27,9 +27,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        if (ParseUser.getCurrentUser()!=null){
-//            goMainActivity();
-//        }
+        if (ParseUser.getCurrentUser()!=null){
+            goMainActivity();
+        }
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
@@ -40,10 +40,10 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-//                loginUser(username,password);
-                if (username == "dan" && password == "123"){
-                    goMainActivity();
-                }
+                loginUser(username,password);
+//                if (username == "dan" && password == "123"){
+//                    goMainActivity();
+//                }
             }
         });
     }
@@ -58,8 +58,9 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"Wrong username or password!",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                goMainActivity();
                 Toast.makeText(LoginActivity.this,"Success!",Toast.LENGTH_SHORT).show();
+                goMainActivity();
+
             }
         });
     }

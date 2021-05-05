@@ -1,5 +1,6 @@
 package com.example.bmmo.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,10 +8,13 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,13 +23,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bmmo.Exercise;
 import com.example.bmmo.MainActivity;
-import com.example.bmmo.Post;
+import com.example.bmmo.Exercise;
 import com.example.bmmo.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -33,12 +40,13 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ComposeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ComposeFragment extends Fragment {
@@ -49,8 +57,11 @@ public class ComposeFragment extends Fragment {
     private Button btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
+    private Button btnStop;
     private File photoFile;
     private String photoFileName = "photo.jpg";
+
+    private long pause;
     //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";
@@ -63,8 +74,8 @@ public class ComposeFragment extends Fragment {
     private String workout = null;
     private static final String[] paths = {"Pushups", "Squats", "Lunges","Glute bridge"};
 
-
-
+   private Chronometer timer;
+   private boolean checker;
 
 
     public ComposeFragment() {
@@ -83,25 +94,27 @@ public class ComposeFragment extends Fragment {
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        super.onViewCreated (view, savedInstanceState);
 
 //        btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         //ivPostImage = view.findViewById(R.id.ivPostImage);
+        super.onCreate (savedInstanceState);
+        timer = view.findViewById (R.id.timer);
 
-        spinner = (Spinner)view.findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(((MainActivity)getActivity()),
+        spinner = (Spinner) view.findViewById (R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (((MainActivity) getActivity ()),
 
-                android.R.layout.simple_spinner_item,paths);
+                android.R.layout.simple_spinner_item, paths);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        adapter.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter (adapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener () {
+        spinner.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-                workout= (String) parent.getItemAtPosition(position);
+                Log.v ("item", (String) parent.getItemAtPosition (position));
+                workout = (String) parent.getItemAtPosition (position);
             }
 
             @Override
@@ -110,49 +123,76 @@ public class ComposeFragment extends Fragment {
             }
         });
 
-
-        btnSubmit = view.findViewById(R.id.btnSubmit);
+        //START
+        btnSubmit = view.findViewById (R.id.btnSubmit);
         //        queryPosts();
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
-                if(workout != null)
-                {
-                    Log.v("item",workout);
-                }
+                if (workout != null) {
+                    Log.v ("item", workout);
 
+                }
+                spinner.setEnabled(false);
+                spinner.setClickable(false);
+                if (!checker) {
+                    timer.setBase(SystemClock.elapsedRealtime ()-pause);
+                    timer.start ();
+                    checker = true;
+                }
 
 
 //                ParseUser currentUser = ParseUser.getCurrentUser();
 //                savePost(description,currentUser,photoFile);
             }
         });
-    }
 
-
-
-
-
-
-
-    private void savePost(String description, ParseUser currentUser,File photoFile) {
-        Post post = new Post();
-        post.setDescription(description);
-
-        post.setUser(currentUser);
-        post.saveInBackground(new SaveCallback() {
+        //STOP
+        btnStop = view.findViewById (R.id.btnStop);
+        btnStop.setOnClickListener (new View.OnClickListener () {
             @Override
-            public void done(ParseException e) {
-                if (e!=null){
-                    Log.e(TAG,"Error saving",e);
-                    Toast.makeText(getContext(),"Error saving",Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                if (workout != null) {
+                    Log.v ("item", workout);
                 }
-                Log.i(TAG,"Saved");
-                etDescription.setText("");
-                ivPostImage.setImageResource(0);
+                timer.setBase (SystemClock.elapsedRealtime ());
+                pause=0;
+                spinner.setEnabled(true);
+                spinner.setClickable(true);
+                if (checker) {
+                    timer.stop ();
+                    pause=SystemClock.elapsedRealtime () - timer.getBase ();
+                    checker = false;
+                }
+
+//                ParseUser currentUser = ParseUser.getCurrentUser();
+//                savePost(description,currentUser,photoFile);
             }
         });
+
+
     }
+
+
+
+//    private void saveExercsise(ParseUser currentUser, int time) {
+//        Exercise exercise = new Exercise();
+//        post.setDescription(description);
+//
+//        post.setUser(currentUser);
+//        post.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if (e!=null){
+//                    Log.e(TAG,"Error saving",e);
+//                    Toast.makeText(getContext(),"Error saving",Toast.LENGTH_SHORT).show();
+//                }
+//                Log.i(TAG,"Saved");
+//                etDescription.setText("");
+//                ivPostImage.setImageResource(0);
+//            }
+//        });
+//    }
 
 
 

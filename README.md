@@ -85,13 +85,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 ## Wireframes
 [Hand sketched wireframes]
-
-<img src="https://i.imgur.com/m3C0dwL.jpg" width=400>
-
-
-[NEW Prototype Home Screen Wireframe] - Rabiul
-
-<img src="BMMO Home.jpg" width=400>
+<img src="https://i.imgur.com/m3C0dwL.jpg" width=600>
 
 ## Video Walkthrough
 
@@ -175,7 +169,7 @@ ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
                 }
                 for (Workout workout : workout) {
                     Log.i(TAG, "Workout: " + workout.getExercise() + ", User: "
-                            + post.getUser().getUsername());
+                            + exercise.getUser().getUsername());
                 }
                 allWorkout.addAll(workout);
                 adapter.notifyDataSetChanged();

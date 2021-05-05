@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
@@ -19,26 +18,26 @@ import java.util.List;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     private Context context;
-    private List<Post> posts;
+    private List<Exercise> exercises;
 
     /* Within the RecyclerView.Adapter class */
 
     // Clean all elements of the recycler
     public void clear() {
-        posts.clear();
+        exercises.clear();
         notifyDataSetChanged();
     }
 
     // Add a list of items -- change to type used
-    public void addAll(List<Post> list) {
-        posts.addAll(list);
+    public void addAll(List<Exercise> list) {
+        exercises.addAll(list);
         notifyDataSetChanged();
     }
 
 
-    public PostsAdapter(Context context, List<Post> posts) {
+    public PostsAdapter(Context context, List<Exercise> exercises) {
         this.context = context;
-        this.posts = posts;
+        this.exercises = exercises;
     }
 
     @NonNull
@@ -50,13 +49,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post = posts.get(position);
-        holder.bind(post);
+        Exercise exercise = exercises.get(position);
+        holder.bind(exercise);
     }
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        return exercises.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -72,15 +71,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
         }
 
-        public void bind(Post post) {
-            tvDescription.setText(post.getDescription());
-            tvUsername.setText(post.getUser().getUsername());
-            ParseFile image = post.getImage();
-            if (image != null){
-                Glide.with(context)
-                        .load(post.getImage().getUrl())
-                        .into(ivImage);
-            }
+        public void bind(Exercise exercise) {
+//            tvDescription.setText(exercise.getDescription());
+//            tvUsername.setText(exercise.getUser().getUsername());
+//            ParseFile image = exercise.getImage();
+//            if (image != null){
+//                Glide.with(context)
+//                        .load(exercise.getImage().getUrl())
+//                        .into(ivImage);
+//            }
         }
     }
 }
