@@ -88,7 +88,9 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 <img src="https://i.imgur.com/m3C0dwL.jpg" width=400>
 
+
 [NEW Prototype Home Screen Wireframe]
+
 <img src="BMMO Home.jpg" width=400>
 
 ## Video Walkthrough
