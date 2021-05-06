@@ -1,6 +1,7 @@
 package com.example.bmmo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.parse.ParseFile;
-
 import java.util.List;
 
-public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 
     private Context context;
     private List<Exercise> exercises;
@@ -35,7 +33,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     }
 
 
-    public PostsAdapter(Context context, List<Exercise> exercises) {
+    public ExerciseAdapter(Context context, List<Exercise> exercises) {
         this.context = context;
         this.exercises = exercises;
     }
@@ -50,6 +48,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Exercise exercise = exercises.get(position);
+//        Log.i("hi",exercise.getUser().getUsername());
         holder.bind(exercise);
     }
 
@@ -64,16 +63,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private ImageView ivImage;
         private TextView tvDescription;
 
+
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
-            ivImage = itemView.findViewById(R.id.ivImage);
+//            ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
         }
 
         public void bind(Exercise exercise) {
 //            tvDescription.setText(exercise.getDescription());
 //            tvUsername.setText(exercise.getUser().getUsername());
+            tvUsername.setText("May 4th 2021");
+            tvDescription.setText("Dan exercised by doing push-ups for 3 minutes and 16 seconds, gaining 12 exp.");
+
+
 //            ParseFile image = exercise.getImage();
 //            if (image != null){
 //                Glide.with(context)

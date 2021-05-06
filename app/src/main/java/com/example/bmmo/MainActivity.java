@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.bmmo.fragments.ComposeFragment;
-import com.example.bmmo.fragments.PostsFragment;
+import com.example.bmmo.fragments.ExerciseFragment;
 import com.example.bmmo.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        fragment = new PostsFragment();
+                        fragment = new ExerciseFragment();
                         break;
                     case R.id.action_exercise:
                         fragment = new ComposeFragment();

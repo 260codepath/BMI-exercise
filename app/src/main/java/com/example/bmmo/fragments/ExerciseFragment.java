@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.bmmo.Exercise;
-import com.example.bmmo.PostsAdapter;
+import com.example.bmmo.ExerciseAdapter;
 import com.example.bmmo.Quiz;
 import com.example.bmmo.R;
 import com.parse.FindCallback;
@@ -28,16 +28,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PostsFragment extends Fragment {
+public class ExerciseFragment extends Fragment {
 
     private final int REQUEST_CODE = 20;
     public static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
-    public PostsAdapter adapter;
+    public ExerciseAdapter adapter;
     public List<Exercise> allExercises;
     private SwipeRefreshLayout swipeContainer;
 
-    public PostsFragment() {
+    public ExerciseFragment() {
         // Required empty public constructor
     }
 
@@ -70,7 +70,7 @@ public class PostsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rvPosts = view.findViewById(R.id.rvPosts);
         allExercises = new ArrayList<>();
-        adapter = new PostsAdapter(getContext(), allExercises);
+        adapter = new ExerciseAdapter(getContext(), allExercises);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -109,6 +109,7 @@ public class PostsFragment extends Fragment {
 //                    Log.i(TAG,"Post: " + exercise.getUser() + ", username: " + exercise.getUser().getUsername());
 //                }
                 allExercises.addAll(exercises);
+//                adapter.addAll(allExercises);
                 adapter.notifyDataSetChanged();
                 swipeContainer.setRefreshing(false);
             }

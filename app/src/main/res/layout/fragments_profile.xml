@@ -1,83 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/Stats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="80dp"
-        android:text="Stats"
-        android:textColor="#ED0F0F"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/stamina_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Stats"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="10dp"
-        android:text="Stamina : 0" />
-
-    <TextView
-        android:id="@+id/strength_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/health_id"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="10dp"
-        android:text="Strength : 1" />
-
-    <TextView
-        android:id="@+id/health_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stamina_id"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="10dp"
-        android:text="Health : 10" />
-
-    <TextView
-        android:id="@+id/int_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/strength_id"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="10dp"
-        android:text="Intelligence : 68.9" />
-
-    <TextView
-        android:id="@+id/BMI_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/int_id"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="10dp"
-        android:text="BMI : 17" />
-
-    <TextView
-        android:id="@+id/level_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="32dp"
-        android:text="Level 00" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -85,8 +11,93 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
         app:srcCompat="@drawable/instagram_user_filled_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:scrollbars="none" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvLevel"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:hint="username" />
+
+    <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rvStats"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvLevel"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginBottom="7dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rvStats"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="2dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tvBMO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="-1dp"
+        android:text="TextView" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvStats"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProfileExercise"
+            android:layout_width="410dp"
+            android:layout_height="217dp"
+            android:layout_below="@+id/rvStats"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="0dp" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>
