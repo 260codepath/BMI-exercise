@@ -1,6 +1,7 @@
 package com.example.bmmo;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Workout workout = workouts.get(position);
-//        Log.i("hi",exercise.getUser().getUsername());
+//        Log.i("hi",workout.getUser().getUsername());
         holder.bind(workout);
     }
 

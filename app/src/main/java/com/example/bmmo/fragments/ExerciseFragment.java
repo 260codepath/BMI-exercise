@@ -41,21 +41,21 @@ public class ExerciseFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.quiz_menu,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.quiz_menu) {
-            Intent intent = new Intent(getActivity(), Quiz.class);
-            startActivityForResult(intent,REQUEST_CODE);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.quiz_menu,menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (item.getItemId() == R.id.quiz_menu) {
+//            Intent intent = new Intent(getActivity(), Quiz.class);
+//            startActivityForResult(intent,REQUEST_CODE);
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,6 +110,7 @@ public class ExerciseFragment extends Fragment {
 //                for (Exercise exercise : exercises){
 //                    Log.i(TAG,"Post: " + exercise.getUser() + ", username: " + exercise.getUser().getUsername());
 //                }
+//                Log.i(TAG,workouts.get(2).getUser().getUsername());
                 allWorkouts.addAll(workouts);
 //                adapter.addAll(allExercises);
                 adapter.notifyDataSetChanged();

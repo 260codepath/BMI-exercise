@@ -71,9 +71,9 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
 
         public void bind(Profile profile) {
 //            tvDescription.setText(exercise.getDescription());
-            tvHealth.setText("Health: 10");
-            tvStamina.setText("Stamina: 7");
-            tvStrength.setText("Strength: 7");
+            tvHealth.setText("Health: "+profile.getHealth());
+            tvStamina.setText("Stamina: "+profile.getStamina());
+            tvStrength.setText("Strength: "+profile.getStrength());
 //            ParseFile image = exercise.getImage();
 //            if (image != null){
 //                Glide.with(context)

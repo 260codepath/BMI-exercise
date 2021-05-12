@@ -193,7 +193,7 @@ public class ComposeFragment extends Fragment {
             }
         });
         ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
-        query.whereEqualTo(Profile.KEY_USER,ParseUser.getCurrentUser());
+        query.whereEqualTo(Profile.KEY_USER,currentUser);
         query.include(Profile.KEY_USER);
         query.findInBackground(new FindCallback<Profile>() {
             @Override
@@ -202,9 +202,16 @@ public class ComposeFragment extends Fragment {
                     Log.e(TAG, "Issue getting posts", e);
                     return;
                 }
-                Log.i(TAG,String.valueOf(profile.get(0).getLevel()!=0));
+//                Log.i(TAG,String.valueOf(exp));
                 profile.get(0).setExperience(exp);
-                profile.get(0).setLevel((int)Math.floor((Math.sqrt(625-100*exp)-25)/50));
+                Log.i(TAG,profile.get(0).getUser().getUsername());
+                int level = profile.get(0).getLevel();
+                profile.get(0).setLevel((int)Math.floor((Math.sqrt(625+100*profile.get(0).getExperience())-25)/50));
+                if (level!=profile.get(0).getLevel() ){
+                    Toast.makeText(getContext(),"You leveled up!",Toast.LENGTH_LONG).show();
+                }
+                Log.i(TAG,String.valueOf(profile.get(0).getExperience()));
+                profile.get(0).saveInBackground();
             }
         });
     }
