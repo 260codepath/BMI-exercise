@@ -6,6 +6,9 @@
     <string name="log_out">log out</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
-    <string name="exercise">Exercise</string>
+    <string name="workout">Exercise</string>
     <string name="quiz">Quiz</string>
+    <string name="register">register</string>
+    <string name="height">height</string>
+    <string name="weight">weight</string>
 </resources>

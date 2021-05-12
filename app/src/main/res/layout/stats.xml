@@ -9,18 +9,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
-        android:text="TextView" />
+        android:fontFamily="@font/oswald_bold"
+        android:text="TextView"
+        android:textColor="#AE0A0A"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvStamina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
-        android:text="TextView" />
+        android:fontFamily="@font/oswald_bold"
+        android:text="TextView"
+        android:textColor="#36951B"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvStrength"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:fontFamily="@font/oswald_bold"
+        android:text="TextView"
+        android:textColor="#306AC1"
+        android:textSize="16sp" />
 </LinearLayout>

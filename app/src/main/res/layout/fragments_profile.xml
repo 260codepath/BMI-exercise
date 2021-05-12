@@ -34,10 +34,12 @@
         android:layout_above="@+id/tvLevel"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="-9dp"
         android:layout_toEndOf="@+id/imageView"
-        android:hint="username" />
+        android:fontFamily="@font/merriweather"
+        android:textSize="20sp"
+        tools:text="@string/username" />
 
     <TextView
         android:id="@+id/tvLevel"
@@ -47,7 +49,8 @@
         android:layout_marginStart="1dp"
         android:layout_marginBottom="1dp"
         android:layout_toEndOf="@+id/imageView"
-        android:text="TextView" />
+        android:fontFamily="@font/merriweather"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvHeight"
@@ -55,9 +58,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/tvLevel"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="-1dp"
-        android:layout_marginBottom="7dp"
-        android:text="TextView" />
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="-5dp"
+        android:fontFamily="@font/merriweather"
+        android:hint="@string/height"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvWeight"
@@ -66,7 +71,9 @@
         android:layout_above="@+id/rvStats"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="2dp"
-        android:text="TextView" />
+        android:fontFamily="@font/merriweather"
+        android:hint="@string/weight"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvBMO"
@@ -75,8 +82,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="-1dp"
-        android:text="TextView" />
+        android:layout_marginEnd="0dp"
+        android:fontFamily="@font/merriweather"
+        android:hint="bmi"
+        android:textSize="16sp" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer2"

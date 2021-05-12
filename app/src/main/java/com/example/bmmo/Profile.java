@@ -1,12 +1,18 @@
 package com.example.bmmo;
 
+import android.util.Log;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.text.DecimalFormat;
+
 @ParseClassName("Profile")
 public class Profile extends ParseObject {
+
+    private static DecimalFormat df2 = new DecimalFormat("#.#");
 
     public static final String KEY_USER = "user";
     public static final String KEY_CREATED_AT = "createdAt";
@@ -24,9 +30,9 @@ public class Profile extends ParseObject {
         return getParseUser(KEY_USER);
     }
     public int getLevel() {return getInt(KEY_LEVEL);}
-    public int getHeight() {return getInt(KEY_HEIGHT);}
-    public int getWeight() {return getInt(KEY_WEIGHT);}
-    public int getBMO() {return getInt(KEY_BMO);}
+    public double getHeight() {return getDouble(KEY_HEIGHT);}
+    public double getWeight() {return getDouble(KEY_WEIGHT);}
+    public double getBMO() {return getDouble(KEY_BMO);}
     public int getStamina() {return getInt(KEY_STAMINA);}
     public int getHealth() {return getInt(KEY_HEALTH);}
     public int getStrength() {return getInt(KEY_STRENGTH);}
@@ -35,15 +41,20 @@ public class Profile extends ParseObject {
     public void setUser(ParseUser user){
         put(KEY_USER,user);
     }
-    public void setHeightWeight(int height, int weight) {
+    public void setHeightWeight(double height, double weight) {
         put(KEY_HEIGHT,height);
         put(KEY_WEIGHT,weight);
-        put(KEY_BMO, weight/(height*height));
+        double h = height/100;
+        double BMI = weight;
+        BMI /= (h*h);
+        BMI = Double.parseDouble(df2.format(BMI));
+        Log.i("hi",String.valueOf(BMI));
+        put(KEY_BMO, BMI);
 
     }
     public void setLevel(int level) { put(KEY_LEVEL,level);}
     public void setStamina(int stamina) { put(KEY_STAMINA,stamina);}
     public void setHealth(int health) { put(KEY_HEALTH,health);}
-    public void setStrength(int strength) { put(KEY_STRENGTH,strength);}
+    public void setStrength(int strength) { put(KEY_STRENGTH,strength); }
     public void setExperience(double exp) { put(KEY_EXPERIENCE,exp+getExperience());}
 }

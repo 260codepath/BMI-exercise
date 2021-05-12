@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bmmo.Exercise;
+import com.example.bmmo.Workout;
 import com.example.bmmo.ExerciseAdapter;
 import com.example.bmmo.Quiz;
 import com.example.bmmo.R;
@@ -34,7 +34,7 @@ public class ExerciseFragment extends Fragment {
     public static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
     public ExerciseAdapter adapter;
-    public List<Exercise> allExercises;
+    public List<Workout> allWorkouts;
     private SwipeRefreshLayout swipeContainer;
 
     public ExerciseFragment() {
@@ -69,8 +69,8 @@ public class ExerciseFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         rvPosts = view.findViewById(R.id.rvPosts);
-        allExercises = new ArrayList<>();
-        adapter = new ExerciseAdapter(getContext(), allExercises);
+        allWorkouts = new ArrayList<>();
+        adapter = new ExerciseAdapter(getContext(), allWorkouts);
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -93,14 +93,16 @@ public class ExerciseFragment extends Fragment {
         queryPosts();
     }
 
+
+
     protected void queryPosts() {
-        ParseQuery<Exercise> query = ParseQuery.getQuery(Exercise.class);
-        query.include(Exercise.KEY_USER);
+        ParseQuery<Workout> query = ParseQuery.getQuery(Workout.class);
+        query.include(Workout.KEY_USER);
         query.setLimit(20);
-        query.addDescendingOrder(Exercise.KEY_CREATED_AT);
-        query.findInBackground(new FindCallback<Exercise>() {
+        query.addDescendingOrder(Workout.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Workout>() {
             @Override
-            public void done(List<Exercise> exercises, ParseException e) {
+            public void done(List<Workout> workouts, ParseException e) {
                 if (e != null){
                     Log.e(TAG, "Issue getting posts",e);
                     return;
@@ -108,7 +110,7 @@ public class ExerciseFragment extends Fragment {
 //                for (Exercise exercise : exercises){
 //                    Log.i(TAG,"Post: " + exercise.getUser() + ", username: " + exercise.getUser().getUsername());
 //                }
-                allExercises.addAll(exercises);
+                allWorkouts.addAll(workouts);
 //                adapter.addAll(allExercises);
                 adapter.notifyDataSetChanged();
                 swipeContainer.setRefreshing(false);

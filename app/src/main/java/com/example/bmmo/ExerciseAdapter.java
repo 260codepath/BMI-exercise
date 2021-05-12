@@ -1,7 +1,6 @@
 package com.example.bmmo;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,31 +10,33 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.ParseUser;
+
 import java.util.List;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
 
     private Context context;
-    private List<Exercise> exercises;
+    private List<Workout> workouts;
 
     /* Within the RecyclerView.Adapter class */
 
     // Clean all elements of the recycler
     public void clear() {
-        exercises.clear();
+        workouts.clear();
         notifyDataSetChanged();
     }
 
     // Add a list of items -- change to type used
-    public void addAll(List<Exercise> list) {
-        exercises.addAll(list);
+    public void addAll(List<Workout> list) {
+        workouts.addAll(list);
         notifyDataSetChanged();
     }
 
 
-    public ExerciseAdapter(Context context, List<Exercise> exercises) {
+    public ExerciseAdapter(Context context, List<Workout> workouts) {
         this.context = context;
-        this.exercises = exercises;
+        this.workouts = workouts;
     }
 
     @NonNull
@@ -47,14 +48,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Exercise exercise = exercises.get(position);
+        Workout workout = workouts.get(position);
 //        Log.i("hi",exercise.getUser().getUsername());
-        holder.bind(exercise);
+        holder.bind(workout);
     }
 
     @Override
     public int getItemCount() {
-        return exercises.size();
+        return workouts.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
@@ -71,11 +72,15 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             tvDescription = itemView.findViewById(R.id.tvDescription);
         }
 
-        public void bind(Exercise exercise) {
+        public void bind(Workout workout) {
 //            tvDescription.setText(exercise.getDescription());
 //            tvUsername.setText(exercise.getUser().getUsername());
-            tvUsername.setText("May 4th 2021");
-            tvDescription.setText("Dan exercised by doing push-ups for 3 minutes and 16 seconds, gaining 12 exp.");
+            String use = workout.getUser().getUsername();
+//            String use = "dogu";
+            tvUsername.setText(workout.getCreatedAt().toString());
+            tvDescription.setText(use.substring(0, 1).toUpperCase()+ use.substring(1).toLowerCase() +
+                    " exercised by doing " + workout.getName() +
+                    " for " + (int)workout.getTime() + " seconds, gaining 10 exp.");
 
 
 //            ParseFile image = exercise.getImage();

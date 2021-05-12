@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.bmmo.Exercise;
+import com.example.bmmo.Workout;
 import com.example.bmmo.LoginActivity;
 import com.example.bmmo.ExerciseAdapter;
 import com.example.bmmo.Profile;
@@ -33,7 +33,7 @@ import java.util.List;
 public class ProfileFragment extends Fragment{
     private final int REQUEST_CODE = 20;
     public static final String TAG = "ProfileFragment";
-    private List<Exercise> allExercises;
+    private List<Workout> allWorkouts;
     private List<Profile> profiles;
     private StatsAdapter adapter;
     private ExerciseAdapter exerciseAdapter;
@@ -85,10 +85,10 @@ public class ProfileFragment extends Fragment{
 
 
         rvExercises = view.findViewById(R.id.rvProfileExercise);
-        allExercises = new ArrayList<>();
+        allWorkouts = new ArrayList<>();
         profiles = new ArrayList<>();
         adapter = new StatsAdapter(getContext(), profiles);
-        exerciseAdapter = new ExerciseAdapter(getContext(), allExercises);
+        exerciseAdapter = new ExerciseAdapter(getContext(), allWorkouts);
         rvStats.setAdapter(adapter);
         rvExercises.setAdapter(exerciseAdapter);
         rvStats.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -117,9 +117,9 @@ public class ProfileFragment extends Fragment{
 
     private void queryProfile(){
         ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
+        query.whereEqualTo(Profile.KEY_USER,ParseUser.getCurrentUser());
         query.include(Profile.KEY_USER);
         query.setLimit(1);
-//        query.whereEqualTo(Profile.KEY_USER,ParseUser.getCurrentUser());
 //        query.addDescendingOrder(Profile.KEY_CREATED_AT);
         query.findInBackground(new FindCallback<Profile>() {
             @Override
@@ -128,14 +128,12 @@ public class ProfileFragment extends Fragment{
                     Log.e(TAG, "Issue getting posts", e);
                     return;
                 }
-                for (Profile prof : profile){
-                    Log.i(TAG,String.valueOf(prof.getLevel()!=0));
-                    tvBMO.setText("BMI: 23.2");
-                    tvWeight.setText("Weight: "+prof.getWeight()+"kg");
-                    tvHeight.setText("Height: "+prof.getHeight()+"cm");
-                    tvLevel.setText("Level: "+prof.getLevel());
-                    tvUsername.setText(ParseUser.getCurrentUser().getUsername());
-                }
+                Log.i(TAG,String.valueOf(profile.get(0).getLevel()!=0));
+                tvBMO.setText("BMI: "+profile.get(0).getBMO());
+                tvWeight.setText("Weight: "+profile.get(0).getWeight()+"kg");
+                tvHeight.setText("Height: "+profile.get(0).getHeight()+"cm");
+                tvLevel.setText("Level: "+profile.get(0).getLevel());
+                tvUsername.setText(ParseUser.getCurrentUser().getUsername());
 
                 profiles.addAll(profile);
 //                adapter.addAll(profiles);
@@ -146,16 +144,16 @@ public class ProfileFragment extends Fragment{
     }
 
     protected void queryPosts() {
-        ParseQuery<Exercise> query = ParseQuery.getQuery(Exercise.class);
-        query.include(Exercise.KEY_USER);
+        ParseQuery<Workout> query = ParseQuery.getQuery(Workout.class);
+        query.include(Workout.KEY_USER);
         query.setLimit(20);
-//        query.whereEqualTo(Exercise.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Workout.KEY_USER, ParseUser.getCurrentUser());
 //        Log.i(TAG,Exercise.KEY_USER);
 //        Log.i(TAG,ParseUser.getCurrentUser().getUsername());
-        query.addDescendingOrder(Exercise.KEY_CREATED_AT);
-        query.findInBackground(new FindCallback<Exercise>() {
+        query.addDescendingOrder(Workout.KEY_CREATED_AT);
+        query.findInBackground(new FindCallback<Workout>() {
             @Override
-            public void done(List<Exercise> posts, ParseException e) {
+            public void done(List<Workout> posts, ParseException e) {
                 if (e != null){
                     Log.e(TAG, "Issue getting posts",e);
                     return;
@@ -163,7 +161,7 @@ public class ProfileFragment extends Fragment{
 //                for (Exercise exercise : posts){
 //                    Log.i(TAG,exercise.getUser().getUsername());
 //                }
-                allExercises.addAll(posts);
+                allWorkouts.addAll(posts);
 //                exerciseAdapter.addAll(allExercises);
                 exerciseAdapter.notifyDataSetChanged();
                 swipeContainer.setRefreshing(false);

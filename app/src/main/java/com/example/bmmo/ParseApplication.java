@@ -13,7 +13,7 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ParseObject.registerSubclass(Exercise.class);
+        ParseObject.registerSubclass(Workout.class);
         ParseObject.registerSubclass(Profile.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)

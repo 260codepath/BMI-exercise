@@ -1,21 +1,10 @@
 package com.example.bmmo.fragments;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import android.os.CountDownTimer;
-import android.os.Environment;
 import android.os.SystemClock;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,23 +16,22 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bmmo.Exercise;
 import com.example.bmmo.MainActivity;
-import com.example.bmmo.Exercise;
+import com.example.bmmo.Workout;
+import com.example.bmmo.Profile;
 import com.example.bmmo.R;
+import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import java.lang.Math;
 
 import java.io.File;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static android.app.Activity.RESULT_OK;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +48,8 @@ public class ComposeFragment extends Fragment {
     private Button btnStop;
     private File photoFile;
     private String photoFileName = "photo.jpg";
+    private long start = 0;
+    private double seconds = 0;
 
     private long pause;
     //    // TODO: Rename parameter arguments, choose names that match
@@ -122,8 +112,8 @@ public class ComposeFragment extends Fragment {
                 // TODO Auto-generated method stub
             }
         });
-
         //START
+        btnStop = view.findViewById (R.id.btnStop);
         btnSubmit = view.findViewById (R.id.btnSubmit);
         //        queryPosts();
         btnSubmit.setOnClickListener (new View.OnClickListener () {
@@ -133,6 +123,9 @@ public class ComposeFragment extends Fragment {
                     Log.v ("item", workout);
 
                 }
+                btnStop.setEnabled(true);
+                btnSubmit.setEnabled(false);
+                start = System.nanoTime();
                 spinner.setEnabled(false);
                 spinner.setClickable(false);
                 if (!checker) {
@@ -146,27 +139,33 @@ public class ComposeFragment extends Fragment {
 //                savePost(description,currentUser,photoFile);
             }
         });
-
         //STOP
-        btnStop = view.findViewById (R.id.btnStop);
+        btnStop.setEnabled(false);
         btnStop.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
                 if (workout != null) {
                     Log.v ("item", workout);
                 }
+                btnStop.setEnabled(false);
+                btnSubmit.setEnabled(true);
                 timer.setBase (SystemClock.elapsedRealtime ());
                 pause=0;
                 spinner.setEnabled(true);
                 spinner.setClickable(true);
                 if (checker) {
                     timer.stop ();
+                    long end = System.nanoTime();
+                    long elapsedTime = end - start;
+                    seconds = (double)elapsedTime / 1_000_000_000.0;
+                    System.out.println( seconds );
                     pause=SystemClock.elapsedRealtime () - timer.getBase ();
                     checker = false;
                 }
 
 //                ParseUser currentUser = ParseUser.getCurrentUser();
 //                savePost(description,currentUser,photoFile);
+                saveExercise(ParseUser.getCurrentUser(), seconds, workout, 10);
             }
         });
 
@@ -175,24 +174,40 @@ public class ComposeFragment extends Fragment {
 
 
 
-//    private void saveExercsise(ParseUser currentUser, int time) {
-//        Exercise exercise = new Exercise();
-//        post.setDescription(description);
-//
-//        post.setUser(currentUser);
-//        post.saveInBackground(new SaveCallback() {
-//            @Override
-//            public void done(ParseException e) {
-//                if (e!=null){
-//                    Log.e(TAG,"Error saving",e);
-//                    Toast.makeText(getContext(),"Error saving",Toast.LENGTH_SHORT).show();
-//                }
-//                Log.i(TAG,"Saved");
-//                etDescription.setText("");
-//                ivPostImage.setImageResource(0);
-//            }
-//        });
-//    }
+    private void saveExercise(ParseUser currentUser, double time, String name, double exp) {
+//        ParseObject work = new ParseObject("workout");
+        Workout work = new Workout();
+        work.put("time",time);
+        work.put("user",currentUser);
+        work.put("name",name);
+        work.put("experience",exp);
+        work.saveInBackground();
+        currentUser.saveInBackground();
+        work.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e!=null){
+                    Log.e(TAG,"Error saving",e);
+                    Toast.makeText(getContext(),"Error saving",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
+        query.whereEqualTo(Profile.KEY_USER,ParseUser.getCurrentUser());
+        query.include(Profile.KEY_USER);
+        query.findInBackground(new FindCallback<Profile>() {
+            @Override
+            public void done(List<Profile> profile, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue getting posts", e);
+                    return;
+                }
+                Log.i(TAG,String.valueOf(profile.get(0).getLevel()!=0));
+                profile.get(0).setExperience(exp);
+                profile.get(0).setLevel((int)Math.floor((Math.sqrt(625-100*exp)-25)/50));
+            }
+        });
+    }
 
 
 

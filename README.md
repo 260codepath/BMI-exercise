@@ -13,7 +13,7 @@ by Melissa, Dogukan, Daniel, Rabiul
 
 ## Overview
 ### Description
-An excersing app that utilizes elements of role playing where the more the user exercises the futher they can upgrade their characters stats.
+An excersing app that utilizes elements of role playing where the more the user workouts the futher they can upgrade their characters stats.
 
 ### App Evaluation
 [Evaluation of your app across the following attributes]
@@ -21,7 +21,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 - **Mobile: Yes**
 - **Story: Cool**
 - **Market: Health**
-- **Habit: everyday exercise**
+- **Habit: everyday workout**
 - **Scope: small**
 
 ## Product Spec
@@ -60,7 +60,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 - [X]  Profile Screen
    * User can view their stats.
 - [X]  Exercise screen
-    * boxes with exercises
+    * boxes with workouts
     * once clicked, decide on time or total youre going for
 
 ### 3. Navigation
@@ -164,12 +164,12 @@ ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
             @Override
             public void done(List<Workout> workouts, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting exercise", e);
+                    Log.e(TAG, "Issue with getting workout", e);
                     return;
                 }
                 for (Workout workout : workout) {
                     Log.i(TAG, "Workout: " + workout.getExercise() + ", User: "
-                            + exercise.getUser().getUsername());
+                            + workout.getUser().getUsername());
                 }
                 allWorkout.addAll(workout);
                 adapter.notifyDataSetChanged();
