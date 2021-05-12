@@ -81,7 +81,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             tvUsername.setText(workout.getCreatedAt().toString());
             tvDescription.setText(use.substring(0, 1).toUpperCase()+ use.substring(1).toLowerCase() +
                     " exercised by doing " + workout.getName() +
-                    " for " + (int)workout.getTime() + " seconds, gaining 10 exp.");
+                    " for " + (int)workout.getTime() + " seconds, gaining " + (int)workout.getExperience() +" exp.");
 
 
 //            ParseFile image = exercise.getImage();

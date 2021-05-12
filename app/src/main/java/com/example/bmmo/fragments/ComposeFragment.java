@@ -165,7 +165,13 @@ public class ComposeFragment extends Fragment {
 
 //                ParseUser currentUser = ParseUser.getCurrentUser();
 //                savePost(description,currentUser,photoFile);
-                saveExercise(ParseUser.getCurrentUser(), seconds, workout, 10);
+                double xp = seconds/10;
+                if (seconds >7200)
+                {
+                    Log.e ("You need a break ", String.valueOf (seconds));
+
+                }
+                saveExercise(ParseUser.getCurrentUser(), seconds, workout,xp);
             }
         });
 
