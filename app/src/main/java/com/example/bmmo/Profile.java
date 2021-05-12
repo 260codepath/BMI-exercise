@@ -20,7 +20,7 @@ public class Profile extends ParseObject {
     public static final String KEY_HEIGHT = "height";
     public static final String KEY_WEIGHT = "weight";
     public static final String KEY_BMO = "bmo";
-    public static final String KEY_STAMINA = "stamina";
+    public static final String KEY_STAMINA = "Stamina";
     public static final String KEY_HEALTH = "health";
     public static final String KEY_STRENGTH = "strength";
     public static final String KEY_EXPERIENCE = "experience";
