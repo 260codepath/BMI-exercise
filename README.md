@@ -91,7 +91,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://imgur.com/a/3NSCRiY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
