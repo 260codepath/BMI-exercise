@@ -38,17 +38,17 @@ An excersing app that utilizes elements of role playing where the more the user 
   * strength
   * BMI (height and weight)
   * mana
-  - [X] Intelligence (default quiz)
 - [X] login - logout
 
 
 **Optional Nice-to-have Stories**
 
-* register
+- [X] register
 * get cards (badges)
 * Quote of the day
 * missing two days will make u lose experience.
 * music
+* Intelligence (default quiz)
 
 
 ### 2. Screen Archetypes
