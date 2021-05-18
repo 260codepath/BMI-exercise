@@ -43,7 +43,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 **Optional Nice-to-have Stories**
 
-- [X] register
+* [X] register
 * get cards (badges)
 * Quote of the day
 * missing two days will make u lose experience.
