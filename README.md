@@ -87,6 +87,10 @@ An excersing app that utilizes elements of role playing where the more the user 
 [Hand sketched wireframes]
 <img src="https://i.imgur.com/m3C0dwL.jpg" width=600>
 
+[NEW Prototype Home Screen Wireframe] - Rabiul
+
+<img src="BMMO Home.jpg" width=400>
+
 ## Video Walkthrough
 https://www.youtube.com/watch?v=3DdENjV4zSU
 
