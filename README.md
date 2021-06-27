@@ -85,6 +85,7 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 ## Wireframes
 [Hand sketched wireframes]
+
 <img src="https://i.imgur.com/m3C0dwL.jpg" width=600>
 
 [NEW Prototype Home Screen Wireframe] - Rabiul
