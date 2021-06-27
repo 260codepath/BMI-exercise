@@ -91,6 +91,8 @@ An excersing app that utilizes elements of role playing where the more the user 
 
 <img src="BMMO Home.jpg" width=400>
 
+Wirefram created with [Figma]
+
 ## Video Walkthrough
 https://www.youtube.com/watch?v=3DdENjV4zSU
 
